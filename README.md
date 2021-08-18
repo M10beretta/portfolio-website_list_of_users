@@ -5,4 +5,4 @@ Technologies: Java 8, Maven,
 Spring Boot (web, data-jpa (hibernate), security, thymeleaf), 
 MVC-pattern, Lombok, MySQL, Bootstrap, HTML, CSS, JavaScript.
 
-The tasks that were solved are displayed in the file "Task conditions.md"
+The tasks that were solved are displayed in the file "Task conditions.md".
