@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:false="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+<div class="text-center"><h1>Users</h1></div>
+<div>
+    <form th:action="@{/edit}" method="post">
+        <div class="btn-group" role="toolbar" aria-label="Basic example">
+            <button type="submit" class="btn btn-outline-dark" style="width: 120px;" name="edit" value="BLOCK">
+                BLOCK</button>
+            <button type="submit" class="btn btn-outline-success" style="width: 120px;" name="edit" value="UNLOCK">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                    <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                </svg>
+                UNLOCK</button>
+            <button type="submit" class="btn btn-outline-danger" style="width: 120px;" name="edit" value="DELETE">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                DELETE</button>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th><label><input class="simple-checkbox" id="checkAll" type="checkbox" name="checkAll"></label></th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Registration Date</th>
+                <th scope="col">Last Login Date</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${users}">
+                <td><label><input class="simple-checkbox" type="checkbox" name="selected" th:value="${user.id}"></label><br/>
+                </td>
+                <td th:text="${user.id}">user</td>
+                <td th:text="${user.username}">username</td>
+                <td th:text="${user.email}">email</td>
+                <td th:text="${user.reg}">regDate</td>
+                <td th:text="${user.log}">logDate</td>
+                <td th:text="${user.status}">status</td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<form th:action="@{/logout}" method="post">
+    <button type="submit" class="btn btn-secondary btn-sm mb-3" style="width: 95px;">Sign Out</button>
+    <hr>
+    <div class="text-center"><p class="mt-3 mb-3 text-muted">© Kurozhko Maksim 2021</p></div>
+</form>
+<script>
+    const checkAll = document.getElementById('checkAll')
+    const checkboxes = document.querySelectorAll('.simple-checkbox')
+    checkAll.addEventListener('change', function (e) {
+        let isChecked = this.checked
+        for (let i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = isChecked;
+        }
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
